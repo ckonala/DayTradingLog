@@ -130,6 +130,12 @@
     <Compile Include="Views\AddTradeForm.Designer.cs">
       <DependentUpon>AddTradeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditTradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditTradeForm.Designer.cs">
+      <DependentUpon>EditTradeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     <Compile Include="Classes\Stocks.cs" />
     <EmbeddedResource Include="Views\AddTradeForm.resx">
       <DependentUpon>AddTradeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditTradeForm.resx">
+      <DependentUpon>EditTradeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

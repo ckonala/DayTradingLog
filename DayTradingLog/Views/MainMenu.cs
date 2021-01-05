@@ -28,9 +28,16 @@ namespace DayTradingLog
 
         private void addTradeButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AddTradeForm addTradeForm = new AddTradeForm(this.Login,this);
-            addTradeForm.Show(this);
+            try
+            {
+                this.Hide();
+                AddTradeForm addTradeForm = new AddTradeForm(this.Login, this);
+                addTradeForm.Show(this);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Unable to Launch Add Trade Form", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void InitializeDataGridView()
@@ -87,15 +94,40 @@ namespace DayTradingLog
             InitializeDataGridView();
             ProfitLossCalc();
         }
-
-        private void mainMenuFormLoad(object sender, EventArgs e)
-        {
-           
-        }
-
+        
         private void mainMenuFormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void editTradeButton_Click(object sender, EventArgs e)
+        {
+            if (stockLogDataGridView.SelectedRows.Count > 0)
+            {
+                var itemtoEdit = (DataRowView)stockLogDataGridView.SelectedRows[0].DataBoundItem;
+                this.Hide();
+                EditTradeForm editTradeForm = new EditTradeForm(this.Login, this,itemtoEdit);
+                editTradeForm.Show(this);
+            }
+            else
+            {
+                MessageBox.Show("Please select entire row to edit", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void deleteTradeButton_Click(object sender, EventArgs e)
+        {
+            if (stockLogDataGridView.SelectedRows.Count > 0)
+            {
+                var itemtoDelete = (DataRowView) stockLogDataGridView.SelectedRows[0].DataBoundItem;
+                var tradeLogID = itemtoDelete.Row.ItemArray[0];
+                Queries.DeleteTradeLog(Int32.Parse(tradeLogID.ToString()));
+                RefreshDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Please select entire row to delete", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

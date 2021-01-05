@@ -61,6 +61,7 @@ namespace DayTradingLog
             this.editTradeButton.TabIndex = 1;
             this.editTradeButton.Text = "Edit Trade";
             this.editTradeButton.UseVisualStyleBackColor = true;
+            this.editTradeButton.Click += new System.EventHandler(this.editTradeButton_Click);
             // 
             // deleteTradeButton
             // 
@@ -70,6 +71,7 @@ namespace DayTradingLog
             this.deleteTradeButton.TabIndex = 2;
             this.deleteTradeButton.Text = "Delete Trade";
             this.deleteTradeButton.UseVisualStyleBackColor = true;
+            this.deleteTradeButton.Click += new System.EventHandler(this.deleteTradeButton_Click);
             // 
             // reportsButton
             // 
@@ -105,6 +107,7 @@ namespace DayTradingLog
             this.stockLogDataGridView.Location = new System.Drawing.Point(12, 111);
             this.stockLogDataGridView.MultiSelect = false;
             this.stockLogDataGridView.Name = "stockLogDataGridView";
+            this.stockLogDataGridView.ReadOnly = true;
             this.stockLogDataGridView.Size = new System.Drawing.Size(1374, 513);
             this.stockLogDataGridView.TabIndex = 6;
             // 
@@ -169,7 +172,6 @@ namespace DayTradingLog
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Day Trading Log - Main Menu";
-            this.Activated += new System.EventHandler(this.mainMenuFormLoad);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainMenuFormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.stockLogDataGridView)).EndInit();
             this.ResumeLayout(false);

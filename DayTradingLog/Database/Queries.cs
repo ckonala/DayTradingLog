@@ -92,6 +92,35 @@ namespace DayTradingLog.Database
 
         }
 
+        public static void UpdateTrade(Stocks stocks, Login login, int tradeID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                var stockID = InsertTickerSymbol(stocks);
+
+                var sql =
+                    "Update TradeLog Set TickerID=@TickerID, TradeDate=@TradeDate, TradeQty=@TradeQty, TradePurchase=@TradePurchase, Tradesold=@Tradesold, TradeTotalPurchasePrice=@TradeTotalPurchasePrice," +
+                    "TradeTotalSalePrice=@TradeTotalSalePrice, TradeType=@TradeType, TradePL=@TradePL Where TradeLogID=@TradeID";
+
+                using var cmd = new MySqlCommand(sql, connection);
+
+                cmd.Parameters.AddWithValue("@TickerID", stockID);
+                cmd.Parameters.AddWithValue("@TradeDate", stocks.DateofTrade);
+                cmd.Parameters.AddWithValue("@TradeQty", stocks.Quantity);
+                cmd.Parameters.AddWithValue("@TradePurchase", stocks.PurchasePrice);
+                cmd.Parameters.AddWithValue("@Tradesold", stocks.SalePrice);
+                cmd.Parameters.AddWithValue("@TradeTotalPurchasePrice", stocks.TotalPurchasePrice);
+                cmd.Parameters.AddWithValue("@TradeTotalSalePrice", stocks.TotalSalePrice);
+                cmd.Parameters.AddWithValue("@TradeType", stocks.TradeType);
+                cmd.Parameters.AddWithValue("@TradePL", stocks.TradePL);
+                cmd.Parameters.AddWithValue("@TradeID", tradeID);
+                cmd.Prepare();
+                cmd.ExecuteScalar();
+            }
+
+        }
+
         public static DataTable GetTable(Login login)
         {
             using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
@@ -135,6 +164,22 @@ namespace DayTradingLog.Database
                 cmd.CommandType = CommandType.StoredProcedure;
                 var result = cmd.ExecuteScalar();
                 return decimal.Parse(result.ToString());
+            }
+
+        }
+
+        public static void DeleteTradeLog(int tradeLogID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                var sql = "DELETE FROM TradeLog WHERE TradeLogID =@TradeLogID";
+
+                using var cmd = new MySqlCommand(sql, connection);
+
+                cmd.Parameters.AddWithValue("@TradeLogID", tradeLogID);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
             }
 
         }
