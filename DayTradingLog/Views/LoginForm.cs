@@ -15,6 +15,7 @@ namespace DayTradingLog
 {
     public partial class LoginForm : Form
     {
+        private Login Login { get; set; }
         public LoginForm()
         {
             InitializeComponent();
@@ -41,40 +42,37 @@ namespace DayTradingLog
             var ss1 = stocks2.PurchasePrice;
             var ee4 = stocks2.TradeType;
 
-            //remove this late and uncomment the code
-
-            this.Hide();
-            MainMenu mainmenu = new MainMenu();
-            mainmenu.Show(this);
-
-
-            //if (!(userNameTextBox.Text is null) && userNameTextBox.Text.Length > 0)
-            //{
-            //    if (!(passwordTextBox.Text is null) && passwordTextBox.Text.Length > 0)
-            //    {
-            //        LoginDatabase login = new LoginDatabase();
-            //        if (login.ValidateLogin(userNameTextBox.Text, passwordTextBox.Text))
-            //        {
-            //            this.Hide();
-            //            MainMenu mainmenu = new MainMenu();
-            //            mainmenu.Show(this);
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Username or Password is incorrect", "Error", MessageBoxButtons.OK);
-            //            userNameTextBox.Clear();
-            //            passwordTextBox.Clear();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Password Field is empty", "Error", MessageBoxButtons.OK);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("UserName Field is empty", "Error", MessageBoxButtons.OK);
-            //}
+            if (!(userNameTextBox.Text is null) && userNameTextBox.Text.Length > 0)
+            {
+                if (!(passwordTextBox.Text is null) && passwordTextBox.Text.Length > 0)
+                {
+                    LoginDatabase login = new LoginDatabase();
+                    if (login.ValidateLogin(userNameTextBox.Text, passwordTextBox.Text))
+                    {
+                        this.Hide();
+                        Login loginuserLogin = new Login()
+                        {
+                            UserID = userNameTextBox.Text
+                        };
+                        MainMenu mainmenu = new MainMenu(loginuserLogin);
+                        mainmenu.Show(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username or Password is incorrect", "Error", MessageBoxButtons.OK);
+                        userNameTextBox.Clear();
+                        passwordTextBox.Clear();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Password Field is empty", "Error", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("UserName Field is empty", "Error", MessageBoxButtons.OK);
+            }
         }
     }
 }

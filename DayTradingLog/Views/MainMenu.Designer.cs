@@ -36,6 +36,10 @@ namespace DayTradingLog
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.stockLogDataGridView = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.todaysPLLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cumilativePLLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.stockLogDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,11 +108,55 @@ namespace DayTradingLog
             this.stockLogDataGridView.Size = new System.Drawing.Size(1374, 513);
             this.stockLogDataGridView.TabIndex = 6;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(307, 653);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 24);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Todays Profit / Loss";
+            // 
+            // todaysPLLabel
+            // 
+            this.todaysPLLabel.AutoSize = true;
+            this.todaysPLLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.todaysPLLabel.Location = new System.Drawing.Point(342, 690);
+            this.todaysPLLabel.Name = "todaysPLLabel";
+            this.todaysPLLabel.Size = new System.Drawing.Size(93, 29);
+            this.todaysPLLabel.TabIndex = 8;
+            this.todaysPLLabel.Text = "Todays";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(804, 653);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(196, 24);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Cumilative Profit / Loss";
+            // 
+            // cumilativePLLabel
+            // 
+            this.cumilativePLLabel.AutoSize = true;
+            this.cumilativePLLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cumilativePLLabel.Location = new System.Drawing.Point(831, 690);
+            this.cumilativePLLabel.Name = "cumilativePLLabel";
+            this.cumilativePLLabel.Size = new System.Drawing.Size(125, 29);
+            this.cumilativePLLabel.TabIndex = 10;
+            this.cumilativePLLabel.Text = "Cumilative";
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1437, 767);
+            this.Controls.Add(this.cumilativePLLabel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.todaysPLLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.stockLogDataGridView);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.textBox1);
@@ -121,6 +169,8 @@ namespace DayTradingLog
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Day Trading Log - Main Menu";
+            this.Activated += new System.EventHandler(this.mainMenuFormLoad);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainMenuFormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.stockLogDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -136,5 +186,9 @@ namespace DayTradingLog
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.DataGridView stockLogDataGridView;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label todaysPLLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label cumilativePLLabel;
     }
 }

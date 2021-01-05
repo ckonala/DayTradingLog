@@ -199,6 +199,7 @@ namespace DayTradingLog.Views
             this.Name = "AddTradeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Trade";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.addTradeFormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

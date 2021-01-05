@@ -15,10 +15,16 @@ namespace DayTradingLog.Views
 {
     public partial class AddTradeForm : Form
     {
-        public AddTradeForm()
+        private Login Login { get; set; }
+
+        private readonly MainMenu mainmenuForm;
+
+        public AddTradeForm(Login login,MainMenu mainmenuForm)
         {
             InitializeComponent();
+            this.Login = login;
             tradeTypeComboBox.DataSource = ComboBoxItems.TradeTypeIList;
+            this.mainmenuForm = mainmenuForm;
         }
 
         private void submitButton_Click(object sender, EventArgs e)
@@ -39,7 +45,7 @@ namespace DayTradingLog.Views
                         TotalSalePrice = Int32.Parse(qtyTextBox.Text) * decimal.Parse(salePriceTextBox.Text),
                         TradeType = tradeTypeComboBox.SelectedIndex
                     };
-                    Queries.InsertTrade(stocks);
+                    Queries.InsertTrade(stocks,this.Login);
                 }
                 else if(tradeTypeComboBox.SelectedIndex == 1)
                 {
@@ -55,7 +61,7 @@ namespace DayTradingLog.Views
                         TotalSalePrice = decimal.Parse(salePriceTextBox.Text),
                         TradeType = tradeTypeComboBox.SelectedIndex
                     };
-                    Queries.InsertTrade(stocks);
+                    Queries.InsertTrade(stocks, this.Login);
                 }
 
                 else if (tradeTypeComboBox.SelectedIndex == 2)
@@ -72,10 +78,11 @@ namespace DayTradingLog.Views
                         TotalSalePrice = decimal.Parse(salePriceTextBox.Text),
                         TradeType = tradeTypeComboBox.SelectedIndex
                     };
-                    Queries.InsertTrade(stocks);
+                    Queries.InsertTrade(stocks, this.Login);
                 }
 
             }
+            ClearFields();
         }
 
         private bool ValidateControls()
@@ -128,6 +135,23 @@ namespace DayTradingLog.Views
 
             return result;
 
+        }
+
+        private void addTradeFormClosing(object sender, FormClosingEventArgs e)
+        {
+            ClearFields();
+            mainmenuForm.RefreshDataGridView();
+            this.Hide();
+            Owner.Show();
+        }
+
+        private void ClearFields()
+        {
+            tickerTextBox.Clear();
+            tickerDescTextBox.Clear();
+            qtyTextBox.Clear();
+            purchasePriceTextBox.Clear();
+            salePriceTextBox.Clear();
         }
     }
 }

@@ -14,18 +14,22 @@ namespace DayTradingLog
 {
     public partial class MainMenu : Form
     {
+        private Login Login { get; set; }
+
         private BindingSource bindingSource1 = new BindingSource();
-        public MainMenu()
+        public MainMenu(Login login)
         {
             InitializeComponent();
+            this.Login = login;
             InitializeDataGridView();
+            ProfitLossCalc();
 
         }
 
         private void addTradeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddTradeForm addTradeForm = new AddTradeForm();
+            AddTradeForm addTradeForm = new AddTradeForm(this.Login,this);
             addTradeForm.Show(this);
         }
 
@@ -33,7 +37,7 @@ namespace DayTradingLog
         {
             try
             {
-                bindingSource1.DataSource = Queries.GetTable();
+                bindingSource1.DataSource = Queries.GetTable(this.Login);
                 stockLogDataGridView.DataSource = bindingSource1;
                 stockLogDataGridView.Columns["TradeLogID"].Visible = false;
                 stockLogDataGridView.Columns["TickerID"].Visible = false;
@@ -49,6 +53,49 @@ namespace DayTradingLog
             {
                 MessageBox.Show("Cannot Fill Data Grid", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void ProfitLossCalc()
+        {
+            var todaysPl = Queries.GetTodaysPL(Login);
+            if (todaysPl > 0)
+            {
+                todaysPLLabel.Text = todaysPl.ToString();
+                todaysPLLabel.ForeColor = Color.DarkGreen;
+            }
+            else
+            {
+                todaysPLLabel.Text = todaysPl.ToString();
+                todaysPLLabel.ForeColor = Color.Red;
+            }
+
+            var cumilativePl = Queries.GetCumilativePL(Login);
+            if (cumilativePl > 0)
+            {
+                cumilativePLLabel.Text = cumilativePl.ToString();
+                cumilativePLLabel.ForeColor = Color.DarkGreen;
+            }
+            else
+            {
+                cumilativePLLabel.Text = cumilativePl.ToString();
+                cumilativePLLabel.ForeColor = Color.Red;
+            }
+        }
+
+        public void RefreshDataGridView()
+        {
+            InitializeDataGridView();
+            ProfitLossCalc();
+        }
+
+        private void mainMenuFormLoad(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void mainMenuFormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

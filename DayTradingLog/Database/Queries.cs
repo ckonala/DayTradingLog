@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
@@ -63,15 +64,15 @@ namespace DayTradingLog.Database
             }
         }
 
-        public static void InsertTrade(Stocks stocks)
+        public static void InsertTrade(Stocks stocks, Login login)
         {
             using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
             {
                 connection.Open();
                 var stockID = InsertTickerSymbol(stocks);
 
-                var sql = "INSERT INTO TradeLog(TickerID,TradeDate,TradeQty,TradePurchase,Tradesold,TradeTotalPurchasePrice,TradeTotalSalePrice,TradeType,TradePL) " +
-                          "VALUES(@TickerID, @TradeDate, @TradeQty, @TradePurchase, @Tradesold, @TradeTotalPurchasePrice, @TradeTotalSalePrice, @TradeType,@TradePL ); select last_insert_id();";
+                var sql = "INSERT INTO TradeLog(TickerID,TradeDate,TradeQty,TradePurchase,Tradesold,TradeTotalPurchasePrice,TradeTotalSalePrice,TradeType,TradePL,User) " +
+                          "VALUES(@TickerID, @TradeDate, @TradeQty, @TradePurchase, @Tradesold, @TradeTotalPurchasePrice, @TradeTotalSalePrice, @TradeType,@TradePL,@User); select last_insert_id();";
 
                 using var cmd = new MySqlCommand(sql, connection);
 
@@ -84,13 +85,14 @@ namespace DayTradingLog.Database
                 cmd.Parameters.AddWithValue("@TradeTotalSalePrice", stocks.TotalSalePrice);
                 cmd.Parameters.AddWithValue("@TradeType", stocks.TradeType);
                 cmd.Parameters.AddWithValue("@TradePL", stocks.TradePL);
+                cmd.Parameters.AddWithValue("@User", login.UserID);
                 cmd.Prepare();
                 cmd.ExecuteScalar();
             }
 
         }
 
-        public static DataTable GetTable()
+        public static DataTable GetTable(Login login)
         {
             using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
             {
@@ -98,13 +100,43 @@ namespace DayTradingLog.Database
                
                 var sql = " SELECT TradeLogID,Ticker.TickerID,TradeTypeID,TradeDate,Ticker,TickerDesc,TradeQty,TradePurchase,Tradesold,TradeTotalPurchasePrice,TradeTotalSalePrice,TradePL,TradeType.TradeType " +
                           "FROM Stocks.TradeLog , Stocks.Ticker,Stocks.TradeType" +
-                          " where TradeLog.TickerID = Ticker.TickerID and TradeLog.TradeType = TradeType.TradeTypeID; ";
+                          " where TradeLog.User=@user and TradeLog.TickerID = Ticker.TickerID and TradeLog.TradeType = TradeType.TradeTypeID " +
+                          "order by TradeDate Desc;";
 
                 using var cmd = new MySqlCommand(sql, connection);
+                cmd.Parameters.AddWithValue("@user", login.UserID);
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());
                 return dt;
             }
+        }
+
+        public static decimal GetTodaysPL(Login login)
+        {
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                using var cmd = new MySqlCommand("TodaysPL", connection);
+                cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                var result = cmd.ExecuteScalar();
+                return decimal.Parse(result.ToString());
+            }
+
+        }
+
+        public static decimal GetCumilativePL(Login login)
+        {
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                using var cmd = new MySqlCommand("CumilativePL", connection);
+                cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                var result = cmd.ExecuteScalar();
+                return decimal.Parse(result.ToString());
+            }
+
         }
     }
 }
