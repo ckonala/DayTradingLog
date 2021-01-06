@@ -106,7 +106,7 @@ namespace DayTradingLog.Views
             this.MaximizeBox = false;
             this.Name = "ReportsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ReportsForm";
+            this.Text = "Reports";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.reportsFormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.reportsDataGridView)).EndInit();
             this.ResumeLayout(false);
