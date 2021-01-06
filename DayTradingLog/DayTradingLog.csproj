@@ -170,6 +170,7 @@
     <EmbeddedResource Include="Views\SearchFormResults.resx">
       <DependentUpon>SearchFormResults.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

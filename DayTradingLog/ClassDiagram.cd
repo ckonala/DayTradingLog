@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DayTradingLog.Views.AddTradeForm">
+    <Position X="5.5" Y="7.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAACAACAQBDARAACQAEACAIAAIAAAAAAQAAABAAA=</HashCode>
+      <FileName>Views\AddTradeForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Stocks">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAgCAIBAAAAAABAAAIAAAAAAAAAACAAgAAEAQA=</HashCode>
+      <FileName>Classes\Stocks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Options">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Stocks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.PremiumStocks">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Stocks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Login">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Stocks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Database.Helper">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Database.LoginDatabase">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\LoginDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Database.Queries">
+    <Position X="5.75" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAgAAAAAAAAAAAAACAAYAAAAAAAAAkgIA=</HashCode>
+      <FileName>Database\Queries.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Views.EditTradeForm">
+    <Position X="9" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQACAQFDARAACQAEACAIAAIAAAAAAQAAABAAg=</HashCode>
+      <FileName>Views\EditTradeForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.LoginForm">
+    <Position X="0.5" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAASAAAhAAACCAAAACAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Views\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.MainMenu">
+    <Position X="2.75" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAUAIEASAAABABAAKACBgOAABAgBCAAAgRACAAAAA=</HashCode>
+      <FileName>Views\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Views.ReportsForm">
+    <Position X="11.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABACAACEAAgCEAAAIAAAAwAQAAAAAAA=</HashCode>
+      <FileName>Views\ReportsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Views.SearchFormResults">
+    <Position X="15.25" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAAAAAAAAiAAAgCAAgAIAAAAAAwAAAAAAA=</HashCode>
+      <FileName>Views\SearchFormResults.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DayTradingLog.Classes.ComboBoxItems">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Classes\ComboBoxItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
