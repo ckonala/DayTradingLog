@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace DayTradingLog.Database
 {
-    class Queries:Helper
+    class Queries : Helper
     {
         private Stocks stocks { get; set; }
 
@@ -126,11 +126,12 @@ namespace DayTradingLog.Database
             using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
             {
                 connection.Open();
-               
-                var sql = " SELECT TradeLogID,Ticker.TickerID,TradeTypeID,TradeDate,Ticker,TickerDesc,TradeQty,TradePurchase,Tradesold,TradeTotalPurchasePrice,TradeTotalSalePrice,TradePL,TradeType.TradeType " +
+
+                var sql = " SELECT TradeLogID,Ticker.TickerID,TradeTypeID,DATE_FORMAT(TradeDate, '%Y-%m-%d') as 'Trade Date',Ticker,TickerDesc,TradeQty," +
+                          "TradePurchase,Tradesold,TradeTotalPurchasePrice,TradeTotalSalePrice,TradePL,TradeType.TradeType " +
                           "FROM Stocks.TradeLog , Stocks.Ticker,Stocks.TradeType" +
                           " where TradeLog.User=@user and TradeLog.TickerID = Ticker.TickerID and TradeLog.TradeType = TradeType.TradeTypeID " +
-                          "order by TradeDate Desc;";
+                          "order by TradeDate Desc,TradeLogID Desc;";
 
                 using var cmd = new MySqlCommand(sql, connection);
                 cmd.Parameters.AddWithValue("@user", login.UserID);
@@ -147,9 +148,10 @@ namespace DayTradingLog.Database
                 connection.Open();
                 using var cmd = new MySqlCommand("TodaysPL", connection);
                 cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
+                cmd.Parameters.Add(new MySqlParameter("@Currentdate", DateTime.Today));
                 cmd.CommandType = CommandType.StoredProcedure;
                 var result = cmd.ExecuteScalar();
-                return decimal.Parse(result.ToString());
+                return result.ToString().Length == 0 ? 0.00M : decimal.Parse(result.ToString());
             }
 
         }
@@ -163,7 +165,7 @@ namespace DayTradingLog.Database
                 cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
                 cmd.CommandType = CommandType.StoredProcedure;
                 var result = cmd.ExecuteScalar();
-                return decimal.Parse(result.ToString());
+                return result.ToString().Length == 0 ? 0.00M : decimal.Parse(result.ToString());
             }
 
         }
@@ -181,6 +183,55 @@ namespace DayTradingLog.Database
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
             }
+
+        }
+
+        public static DataTable Search(Login login, string search)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                using var cmd = new MySqlCommand("search", connection);
+                cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
+                cmd.Parameters.Add(new MySqlParameter("@Searchterm", search.ToUpper()));
+                cmd.CommandType = CommandType.StoredProcedure;
+                var something = cmd.ExecuteReader();
+                dt.Load(something);
+            }
+            return dt;
+
+        }
+
+        public static DataTable ShowPLByDate(Login login)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                using var cmd = new MySqlCommand("GroupByDate", connection);
+                cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                var something = cmd.ExecuteReader();
+                dt.Load(something);
+            }
+            return dt;
+
+        }
+
+        public static DataTable ShowPLByTicker(Login login)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection connection = new MySqlConnection(GetRDSConnectionString()))
+            {
+                connection.Open();
+                using var cmd = new MySqlCommand("GroupByTicker", connection);
+                cmd.Parameters.Add(new MySqlParameter("@Username", login.UserID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                var something = cmd.ExecuteReader();
+                dt.Load(something);
+            }
+            return dt;
 
         }
     }

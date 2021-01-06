@@ -33,7 +33,7 @@ namespace DayTradingLog
             this.editTradeButton = new System.Windows.Forms.Button();
             this.deleteTradeButton = new System.Windows.Forms.Button();
             this.reportsButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.stockLogDataGridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,13 +81,17 @@ namespace DayTradingLog
             this.reportsButton.TabIndex = 3;
             this.reportsButton.Text = "Reports";
             this.reportsButton.UseVisualStyleBackColor = true;
+            this.reportsButton.Click += new System.EventHandler(this.reportsButton_Click);
             // 
-            // textBox1
+            // searchTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(822, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 20);
-            this.textBox1.TabIndex = 4;
+            this.searchTextBox.Location = new System.Drawing.Point(822, 27);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(166, 20);
+            this.searchTextBox.TabIndex = 4;
+            this.searchTextBox.Text = "Enter Ticker Symbol";
+            this.searchTextBox.Enter += new System.EventHandler(this.RemoveText);
+            this.searchTextBox.Leave += new System.EventHandler(this.AddText);
             // 
             // searchButton
             // 
@@ -97,6 +101,7 @@ namespace DayTradingLog
             this.searchButton.TabIndex = 5;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // stockLogDataGridView
             // 
@@ -162,7 +167,7 @@ namespace DayTradingLog
             this.Controls.Add(this.label1);
             this.Controls.Add(this.stockLogDataGridView);
             this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.reportsButton);
             this.Controls.Add(this.deleteTradeButton);
             this.Controls.Add(this.editTradeButton);
@@ -185,7 +190,7 @@ namespace DayTradingLog
         private System.Windows.Forms.Button editTradeButton;
         private System.Windows.Forms.Button deleteTradeButton;
         private System.Windows.Forms.Button reportsButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.DataGridView stockLogDataGridView;
         private System.Windows.Forms.Label label1;

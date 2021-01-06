@@ -34,7 +34,7 @@ namespace DayTradingLog
                 AddTradeForm addTradeForm = new AddTradeForm(this.Login, this);
                 addTradeForm.Show(this);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
                 MessageBox.Show("Unable to Launch Add Trade Form", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -128,6 +128,46 @@ namespace DayTradingLog
             {
                 MessageBox.Show("Please select entire row to delete", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void RemoveText(object sender, EventArgs e)
+        {
+            searchTextBox.Text = "";
+        }
+
+        private void AddText(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(searchTextBox.Text))
+                searchTextBox.Text = "Enter Ticker Symbol";
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            if (!(String.IsNullOrWhiteSpace(searchTextBox.Text)) && !searchTextBox.Text.Equals("Enter Ticker Symbol"))
+            {
+                var searchResults = Queries.Search(Login, searchTextBox.Text);
+                if (searchResults.Rows.Count != 0)
+                {
+                    this.Hide();
+                    SearchFormResults searchForm = new SearchFormResults(this.Login, this, searchTextBox.Text);
+                    searchForm.Show(this);
+                }
+                else
+                {
+                    MessageBox.Show("No Search Results to Display", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter Ticker Symbol", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void reportsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ReportsForm reportForm = new ReportsForm(this.Login, this);
+            reportForm.Show(this);
         }
     }
 }

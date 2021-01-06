@@ -104,7 +104,7 @@ namespace DayTradingLog
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(266, 31);
-            this.passwordTextBox.TabIndex = 7;
+            this.passwordTextBox.TabIndex = 3;
             // 
             // LoginForm
             // 

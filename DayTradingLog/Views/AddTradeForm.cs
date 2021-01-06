@@ -83,6 +83,9 @@ namespace DayTradingLog.Views
 
             }
             ClearFields();
+            mainmenuForm.RefreshDataGridView();
+            this.Hide();
+            Owner.Show();
         }
 
         private bool ValidateControls()

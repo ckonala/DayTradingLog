@@ -151,6 +151,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Stocks.cs" />
+    <Compile Include="Views\ReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReportsForm.Designer.cs">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchFormResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SearchFormResults.Designer.cs">
+      <DependentUpon>SearchFormResults.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\AddTradeForm.resx">
       <DependentUpon>AddTradeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +184,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\ReportsForm.resx">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SearchFormResults.resx">
+      <DependentUpon>SearchFormResults.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
