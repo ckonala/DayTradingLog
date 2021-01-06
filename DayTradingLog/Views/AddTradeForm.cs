@@ -80,12 +80,12 @@ namespace DayTradingLog.Views
                     };
                     Queries.InsertTrade(stocks, this.Login);
                 }
-
+                ClearFields();
+                mainmenuForm.RefreshDataGridView();
+                this.Hide();
+                Owner.Show();
             }
-            ClearFields();
-            mainmenuForm.RefreshDataGridView();
-            this.Hide();
-            Owner.Show();
+            
         }
 
         private bool ValidateControls()

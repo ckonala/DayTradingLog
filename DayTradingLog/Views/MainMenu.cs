@@ -148,13 +148,18 @@ namespace DayTradingLog
                 var searchResults = Queries.Search(Login, searchTextBox.Text);
                 if (searchResults.Rows.Count != 0)
                 {
+
                     this.Hide();
                     SearchFormResults searchForm = new SearchFormResults(this.Login, this, searchTextBox.Text);
+                    searchTextBox.Clear();
+                    AddText(sender,e);
                     searchForm.Show(this);
                 }
                 else
                 {
-                    MessageBox.Show("No Search Results to Display", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    searchTextBox.Clear();
+                    AddText(sender, e);
+                    MessageBox.Show("No Search Results to Display", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
