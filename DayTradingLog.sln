@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayTradingLog", "DayTradingLog\DayTradingLog.csproj", "{E48B4A19-017F-4A71-8590-41FC908E14C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayTradingLogTests", "DayTradingLogTests\DayTradingLogTests.csproj", "{4DD8627A-F286-455C-B076-D3762AFE307C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E48B4A19-017F-4A71-8590-41FC908E14C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E48B4A19-017F-4A71-8590-41FC908E14C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E48B4A19-017F-4A71-8590-41FC908E14C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD8627A-F286-455C-B076-D3762AFE307C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD8627A-F286-455C-B076-D3762AFE307C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD8627A-F286-455C-B076-D3762AFE307C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD8627A-F286-455C-B076-D3762AFE307C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
