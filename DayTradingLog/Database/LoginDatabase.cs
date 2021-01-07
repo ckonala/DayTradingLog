@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 
 namespace DayTradingLog.Database
 {
-    class LoginDatabase : Helper
+    public class LoginDatabase : Helper
     {
         public bool ValidateLogin(string userName, string password)
         {

@@ -85,5 +85,17 @@ namespace DayTradingLog.Database.Tests
             Assert.AreEqual(52.65M, stock.TotalSalePrice);
             Assert.AreEqual(-50.00M, stock.TradePL);
         }
+
+        [TestMethod()]
+        public void Logintest()
+        {
+            LoginDatabase loginDatabase = new LoginDatabase();
+            var result = loginDatabase.ValidateLogin("test", "test");
+            Assert.IsTrue(result);
+
+            result = loginDatabase.ValidateLogin("test", "test1");
+            Assert.IsFalse(result);
+
+        }
     }
 }
