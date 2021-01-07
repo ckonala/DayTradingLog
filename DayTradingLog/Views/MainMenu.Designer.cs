@@ -142,9 +142,9 @@ namespace DayTradingLog
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(804, 653);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 24);
+            this.label2.Size = new System.Drawing.Size(203, 24);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Cumilative Profit / Loss";
+            this.label2.Text = "Cumulative Profit / Loss";
             // 
             // cumilativePLLabel
             // 
@@ -152,9 +152,9 @@ namespace DayTradingLog
             this.cumilativePLLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cumilativePLLabel.Location = new System.Drawing.Point(831, 690);
             this.cumilativePLLabel.Name = "cumilativePLLabel";
-            this.cumilativePLLabel.Size = new System.Drawing.Size(125, 29);
+            this.cumilativePLLabel.Size = new System.Drawing.Size(132, 29);
             this.cumilativePLLabel.TabIndex = 10;
-            this.cumilativePLLabel.Text = "Cumilative";
+            this.cumilativePLLabel.Text = "Cumulative";
             // 
             // MainMenu
             // 
